@@ -34,69 +34,69 @@ SFMODULES                 = require './single-file-modules'
 { f }                     = require '../../effstring'
 echo = console.log
 info = console.log
+help = console.log
+whisper = console.log
+rpr = ( x ) -> "#{x}"
 debug = console.debug
 
 
 #===========================================================================================================
-demo_instance_function_as_proxy = ->
+{ D, } = do ->
+  { create_infinyproxy,
+    sys_symbol,           } = SFMODULES.require_infiniproxy()
+  #=========================================================================================================
+  class D
 
-  #===========================================================================================================
-  { D, } = do ->
-    { create_infinyproxy,
-      sys_symbol,           } = SFMODULES.require_infiniproxy()
-    #=========================================================================================================
-    class D
+    #-------------------------------------------------------------------------------------------------------
+    constructor: ( callee ) ->
+      @other_prop = 'OTHER_PROP'
+      Object.setPrototypeOf callee, @
+      R = create_infinyproxy { callee, provider: @, }
+      # ...
+      return R
 
-      #-------------------------------------------------------------------------------------------------------
-      constructor: ( callee ) ->
-        @other_prop = 'OTHER_PROP'
-        Object.setPrototypeOf callee, @
-        R = create_infinyproxy { callee, provider: @, }
-        # ...
-        return R
+    #-------------------------------------------------------------------------------------------------------
+    method_of_d: ( value ) ->
+      whisper 'Ω___1', 'METHOD_OF_D'
+      whisper 'Ω___2', ( k for k of @[ sys_symbol ] ) # .sub_level_proxy
+      @[ sys_symbol ].stack.push 'generated'
+      @[ sys_symbol ].stack.push 'stuff'
+      @[ sys_symbol ].stack.push "value:#{rpr value}"
+      return @[ sys_symbol ].sub_level_proxy
 
-      #-------------------------------------------------------------------------------------------------------
-      method_of_d: ( value ) ->
-        whisper 'Ω___1', 'METHOD_OF_D'
-        whisper 'Ω___2', ( k for k of @[ sys_symbol ] ) # .sub_level_proxy
-        @[ sys_symbol ].stack.push 'generated'
-        @[ sys_symbol ].stack.push 'stuff'
-        @[ sys_symbol ].stack.push "value:#{rpr value}"
-        return @[ sys_symbol ].sub_level_proxy
+    #-------------------------------------------------------------------------------------------------------
+    property_of_d: 'PROPERTY_OF_D'
 
-      #-------------------------------------------------------------------------------------------------------
-      property_of_d: 'PROPERTY_OF_D'
+  #---------------------------------------------------------------------------------------------------------
+  return exports = { D, }
 
-    #---------------------------------------------------------------------------------------------------------
-    return exports = { D, }
-  #.........................................................................................................
-  do =>
-    my_fn_3 = ( P... ) ->
-      whisper 'Ω___3', @stack, @stack.is_empty, [ @stack..., ]
-      chain   = [ @stack..., ].join '.'
-      content = ( ( rpr p ) for p in P )
-      return "[#{chain}:#{content}]"
-    echo '——————————————————————————————————————————————————————————————————————————————'
-    help 'Ω___4', rpr d = new D my_fn_3
-    help 'Ω___5', reverse GUY.trm.truth ( d instanceof D )   # true
-    help 'Ω___6', rpr Object.getPrototypeOf d
-    help 'Ω___7', rpr ( typeof Object.getPrototypeOf d ) is ( typeof ( -> ) )
-    help 'Ω___8', rpr typeof d
-    help 'Ω___9', rpr Object::toString.call d
-    help 'Ω__10', rpr d instanceof Function
-    echo '——————————————————————————————————————————————————————————————————————————————'
-    info 'Ω__11', rpr d.other_prop     # OTHER_PROP
-    info 'Ω__12', rpr d.method_of_d()  # METHOD_OF_D
-    info 'Ω__13', rpr d.property_of_d  # PROPERTY_OF_D
-    info 'Ω__14', rpr d.unknown_key    # something else: 'unknown_key'
-    echo '——————————————————————————————————————————————————————————————————————————————'
-    info 'Ω__15', rpr d 1, 2, 'c'
-    info 'Ω__16', rpr d.red
-    info 'Ω__17', rpr d 1, 2, 'c'
-    info 'Ω__18', rpr d.red.bold 1, 2, 'c'
-    info 'Ω__19', rpr d.red.bold.method_of_d(123).hola 'ftw'
-    info 'Ω__20', rpr d.red.bold.method_of_d'123'.hola 'ftw'
-  return null
+#.........................................................................................................
+do =>
+  my_fn_3 = ( P... ) ->
+    whisper 'Ω___3', @stack, @stack.is_empty, [ @stack..., ]
+    chain   = [ @stack..., ].join '.'
+    content = ( ( rpr p ) for p in P )
+    return "[#{chain}:#{content}]"
+  echo '——————————————————————————————————————————————————————————————————————————————'
+  help 'Ω___4', rpr d = new D my_fn_3
+  # help 'Ω___5', reverse GUY.trm.truth ( d instanceof D )   # true
+  help 'Ω___6', rpr Object.getPrototypeOf d
+  help 'Ω___7', rpr ( typeof Object.getPrototypeOf d ) is ( typeof ( -> ) )
+  help 'Ω___8', rpr typeof d
+  help 'Ω___9', rpr Object::toString.call d
+  help 'Ω__10', rpr d instanceof Function
+  echo '——————————————————————————————————————————————————————————————————————————————'
+  info 'Ω__11', rpr d.other_prop     # OTHER_PROP
+  info 'Ω__12', rpr d.method_of_d()  # METHOD_OF_D
+  info 'Ω__13', rpr d.property_of_d  # PROPERTY_OF_D
+  info 'Ω__14', rpr d.unknown_key    # something else: 'unknown_key'
+  echo '——————————————————————————————————————————————————————————————————————————————'
+  info 'Ω__15', rpr d 1, 2, 'c'
+  info 'Ω__16', rpr d.red
+  info 'Ω__17', rpr d 1, 2, 'c'
+  info 'Ω__18', rpr d.red.bold 1, 2, 'c'
+  info 'Ω__19', rpr d.red.bold.method_of_d(123).hola 'ftw'
+  info 'Ω__20', rpr d.red.bold.method_of_d'123'.hola 'ftw'
 
 
 #===========================================================================================================
