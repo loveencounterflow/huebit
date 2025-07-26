@@ -1,64 +1,40 @@
 
-###
-
-
-## Applications
-
-* **RegEx Builder** (example from [Rejigs blog post](https://medium.com/@omarzawahry/rejigs-making-regular-expressions-human-readable-1fad37cb3eae))
-
-```java
-var emailRegex =
-    Rejigs.Create()
-          .AtStart()
-          .OneOrMore(r => r.AnyLetterOrDigit().Or().AnyOf("._%+-"))
-          .Text("@")
-          .OneOrMore(r => r.AnyLetterOrDigit().Or().AnyOf(".-"))
-          .Text(".")
-          .AnyLetterOrDigit().AtLeast(2)
-          .AtEnd()
-          .Build();
-```
-
-* **HTML/XML Builer**
-* **SQL Builder**: `SQL.insert.into.employees('id','name').values(id,name)`
-* **CLI Coloring**
-* syntax for a **Type Checker**
-
-###
-
-
 'use strict'
 
 #===========================================================================================================
-GUY                       = require 'guy'
-{ alert
-  debug
-  help
-  info
-  plain
-  praise
-  urge
-  warn
-  whisper }               = GUY.trm.get_loggers 'demo-proxy'
-{ rpr
-  inspect
-  echo
-  white
-  blue
-  gold
-  grey
-  red
-  bold
-  reverse
-  log     }               = GUY.trm
-{ f }                     = require '../../../apps/effstring'
-write                     = ( p ) -> process.stdout.write p
-C                         = require 'ansis'
-{ nfa }                   = require '../../../apps/normalize-function-arguments'
-GTNG                      = require '../../../apps/guy-test-NG'
-{ Test                  } = GTNG
+# GUY                       = require 'guy'
+# { alert
+#   debug
+#   help
+#   info
+#   plain
+#   praise
+#   urge
+#   warn
+#   whisper }               = GUY.trm.get_loggers 'demo-proxy'
+# { rpr
+#   inspect
+#   echo
+#   white
+#   blue
+#   gold
+#   grey
+#   red
+#   bold
+#   reverse
+#   log     }               = GUY.trm
+# write                     = ( p ) -> process.stdout.write p
+# C                         = require 'ansis'
+# { nfa }                   = require '../../../apps/normalize-function-arguments'
+# GTNG                      = require '../../../apps/guy-test-NG'
+# { Test                  } = GTNG
 SFMODULES                 = require './single-file-modules'
 
+### temporary: ###
+{ f }                     = require '../../effstring'
+echo = console.log
+info = console.log
+debug = console.debug
 
 
 #===========================================================================================================

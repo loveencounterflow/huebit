@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "../src/color-zones.coffee"
+  ],
+  "names": [],
+  "mappings": "AACsG;EAAA;EAEtG,MAAM,CAAC,OAAP,GACE;IAAA,WAAA,EACE;MAAA,KAAA,EACE;QAAA,KAAA,EAAc,SAAd;QACA,IAAA,EAAc,SADd;QAEA,OAAA,EAAc,SAFd;QAGA,KAAA,EAAc,SAHd;QAIA,UAAA,EAAc,SAJd;QAKA,IAAA,EAAc,SALd;QAMA,KAAA,EAAc,SANd;QAOA,KAAA,EAAc;MAPd,CADF;MASA,KAAA,EACE;QAAA,IAAA,EAAc,SAAd;QACA,GAAA,EAAc,SADd;QAEA,MAAA,EAAc,SAFd;QAGA,MAAA,EAAc,SAHd;QAIA,IAAA,EAAc,SAJd;QAKA,KAAA,EAAc,SALd;QAMA,SAAA,EAAc,SANd;QAOA,IAAA,EAAc;MAPd,CAVF;MAkBA,IAAA,EACE;QAAA,KAAA,EAAc,SAAd;QACA,MAAA,EAAc,SADd;QAEA,KAAA,EAAc,SAFd;QAGA,KAAA,EAAc,SAHd;QAIA,KAAA,EAAc,SAJd;QAKA,MAAA,EAAc,SALd;QAMA,IAAA,EAAc,SANd;QAOA,IAAA,EAAc;MAPd;IAnBF;EADF;AAHoG",
+  "sourcesContent": [
+    "\n# \"Colour Zones – Explanatory diagrams, colour names, and modifying adjectives\" by Paul Green-Armytage\n\nmodule.exports =\n  color_zones:\n    light:\n      white:        '#ffffff'\n      pink:         '#e5a3b4'\n      apricot:      '#edc89a'\n      lemon:        '#f2f08f'\n      chartreuse:   '#e0e67a'\n      mint:         '#bbddae'\n      azure:        '#a1dae1'\n      mauve:        '#c5a0c9'\n    vivid:\n      grey:         '#7f7e7f'\n      red:          '#cf2027'\n      orange:       '#da7828'\n      yellow:       '#ecda42'\n      lime:         '#a4c23b'\n      green:        '#77c258'\n      turquoise:    '#54958b'\n      blue:         '#486eb6'\n    deep:\n      black:        '#000000'\n      maroon:       '#7c1214'\n      brown:        '#83421b'\n      khaki:        '#86792f'\n      olive:        '#4c642e'\n      forest:       '#315a2b'\n      teal:         '#305a55'\n      navy:         '#253676'\n\n"
+  ]
+}
