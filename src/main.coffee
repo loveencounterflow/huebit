@@ -28,7 +28,7 @@
 # { nfa }                   = require '../../../apps/normalize-function-arguments'
 # GTNG                      = require '../../../apps/guy-test-NG'
 # { Test                  } = GTNG
-SFMODULES                 = require './single-file-modules'
+SFMODULES                 = require 'bricabrac-single-file-modules'
 
 ### temporary: ###
 { f }                     = require '../../effstring'
