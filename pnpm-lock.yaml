@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      bricabrac-single-file-modules:
+        specifier: ^0.1.0
+        version: 0.1.0
+
+packages:
+
+  bricabrac-single-file-modules@0.1.0:
+    resolution: {integrity: sha512-TaVLkS7Ol2CjnLEp5Au//hazEUx8ZJzFEQIGApR+pWXj0H15OtGE5ahAGbKpGHJh5Ok0zwiAuvQcjUOfS/eU/A==}
+
+snapshots:
+
+  bricabrac-single-file-modules@0.1.0: {}
