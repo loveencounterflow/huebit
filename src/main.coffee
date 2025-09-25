@@ -28,7 +28,7 @@
 # { nfa }                   = require '../../../apps/normalize-function-arguments'
 # GTNG                      = require '../../../apps/guy-test-NG'
 # { Test                  } = GTNG
-SFMODULES                 = require 'bricabrac-single-file-modules'
+SFMODULES                 = require 'bricabrac-sfmodules'
 
 ### temporary: ###
 { f }                     = require '../../effstring'
@@ -98,52 +98,6 @@ do =>
   info 'Ω__19', rpr d.red.bold.method_of_d(123).hola 'ftw'
   info 'Ω__20', rpr d.red.bold.method_of_d'123'.hola 'ftw'
 
-
-#===========================================================================================================
-SFMODULES.require_ansi = ->
-
-  #=========================================================================================================
-  ANSI = new class Ansi
-    ###
-
-    * as for the background ('bg'), only colors and no effects can be set; in addition, the bg color can be
-      set to its default (or 'transparent'), which will show the terminal's or the terminal emulator's
-      configured bg color
-    * as for the foreground ('fg'), colors and effects such as blinking, bold, italic, underline, overline,
-      strike can be set; in addition, the configured terminal default font color can be set, and each effect
-      has a dedicated off-switch
-    * neat tables can be drawn by combining the overline effect with `│` U+2502 'Box Drawing Light Vertical
-      Line'; the renmarkable feature of this is that it minimizes spacing around characters meaning it's
-      possible to have adjacent rows of cells separated from the next row by a border without having to
-      sacrifice a line of text just to draw the border.
-    * while the two color palattes implied by the standard XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-      * better to only use full RGB than to fuzz around with palettes
-      * apps that use colors at all should be prepared for dark and bright backgrounds
-      * in general better to set fg, bg colors than to use reverse
-      * but reverse actually does do what it says—it swaps fg with bg color
-
-    \x1b[39m default fg color
-    \x1b[49m default bg color
-
-    ###
-    #-------------------------------------------------------------------------------------------------------
-    fg_color_code_from_rgb_dec: ([ r, g, b, ]) -> "\x1b[38:2::#{r}:#{g}:#{b}m"
-    bg_color_code_from_rgb_dec: ([ r, g, b, ]) -> "\x1b[48:2::#{r}:#{g}:#{b}m"
-    fg_color_code_from_hex:     ( hex        ) -> @fg_color_code_from_rgb_dec @rgb_from_hex hex
-    bg_color_code_from_hex:     ( hex        ) -> @bg_color_code_from_rgb_dec @rgb_from_hex hex
-    fg_color_code_from_color_name: ( name ) ->
-      rgb = @colors[ name ] ? @colors.fallback
-      return @fg_color_code_from_rgb_dec rgb
-    rgb_from_hex: ( hex ) ->
-      ### TAINT use proper typing ###
-      throw new Error "Ω__25 expected text, got #{rpr hex}" unless ( typeof hex ) is 'string'
-      throw new Error "Ω__25 expected '#', got #{rpr hex}" unless hex.startsWith '#'
-      throw new Error "Ω__25 expected text of length 7, got #{rpr hex}" unless hex.length is 7
-      [ r16, g16, b16, ] = [ hex[ 1 .. 2 ], hex[ 3 .. 4 ], hex[ 5 .. 6 ], ]
-      return [ ( parseInt r16, 16 ), ( parseInt g16, 16 ), ( parseInt b16, 16 ), ]
-
-  #---------------------------------------------------------------------------------------------------------
-  return exports = { ANSI, }
 
 #===========================================================================================================
 demo_colorful_proxy = ->
