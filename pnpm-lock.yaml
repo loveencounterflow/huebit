@@ -8,15 +8,15 @@ importers:
 
   .:
     dependencies:
-      bricabrac-single-file-modules:
-        specifier: ^0.1.0
-        version: 0.1.0
+      bricabrac-sfmodules:
+        specifier: ^0.14.1
+        version: 0.14.1
 
 packages:
 
-  bricabrac-single-file-modules@0.1.0:
-    resolution: {integrity: sha512-TaVLkS7Ol2CjnLEp5Au//hazEUx8ZJzFEQIGApR+pWXj0H15OtGE5ahAGbKpGHJh5Ok0zwiAuvQcjUOfS/eU/A==}
+  bricabrac-sfmodules@0.14.1:
+    resolution: {integrity: sha512-qIEnl9MOq61r+HiiUZzGtSp4rDDkzyPHdm1rue9/7uE+1YeJiySFQnHk5Fv34e3/+Ylsj7AHHVF/yr5A0X+YzQ==}
 
 snapshots:
 
-  bricabrac-single-file-modules@0.1.0: {}
+  bricabrac-sfmodules@0.14.1: {}
